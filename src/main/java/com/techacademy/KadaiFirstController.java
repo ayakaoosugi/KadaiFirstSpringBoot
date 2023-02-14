@@ -24,8 +24,9 @@ public class KadaiFirstController {
 		 //■文字列から数値に変換 Lesson 6Chapter 6.3 Stringからラッパークラスへのキャスト
 		 
 				 Calendar cal = Calendar.getInstance(); 
+				 //calに紐づける為にy、ⅿ、d分割する。
 				 int y = Integer.parseInt(yyyymmdd.substring(0,4));
-				 int m =Integer.parseInt(yyyymmdd.substring(4,6))-1;
+				 int m =Integer.parseInt(yyyymmdd.substring(4,6))-1;//-1は月だと絶対つける。
 				 int d=Integer.parseInt(yyyymmdd.substring(6,8));
 				 cal.set(y,m,d);
 				 
