@@ -2,8 +2,6 @@ package com.techacademy;
 
 
 import java.text.ParseException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,23 +11,39 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class KadaiFirstController {
 	
-	
+	  @GetMapping("/")
+	    public String index() {
+	        return "Hello SpringBoot!";
+	    }
 	//仕様1：指定日の曜日を算定する
 	 @GetMapping("/dayofweek/{yyyymmdd}")
-	    public String dispDayOfWeek(@PathVariable String yyyymmdd) throws ParseException {
+	    public String dispDayOfWeek(@PathVariable String yyyymmdd) {
 		 
-		 Calendar cal = Calendar.getInstance(); 
-		    switch (cal.get(Calendar.DAY_OF_WEEK)) {
-		        case Calendar.SUNDAY: return "Sunday";
-		        case Calendar.MONDAY: return "Monday";
-		        case Calendar.TUESDAY: return "Tseday";
-		        case Calendar.WEDNESDAY: return "Wednesday";
-		        case Calendar.THURSDAY: return "Thursday";
-		        case Calendar.FRIDAY: return "Friday";
-		        case Calendar.SATURDAY: return "Saturday";
-		    }
-		    throw new IllegalStateException();
-		}
+
+			//曜日に当てはめる
+				 Calendar cal = Calendar.getInstance(); 
+				 int y = Integer.parseInt(yyyymmdd.substring(0,4));
+				 int m =Integer.parseInt(yyyymmdd.substring(4,6))-1;
+				 int d=Integer.parseInt(yyyymmdd.substring(6,8));
+				 cal.set(y,m,d);
+				 
+			
+				    switch (cal.get(Calendar.DAY_OF_WEEK)) {
+				        case Calendar.SUNDAY: return "Sunday";
+				        case Calendar.MONDAY: return "Monday";
+				        case Calendar.TUESDAY: return "Tuesday";
+				        case Calendar.WEDNESDAY: return "Wednesday";
+				        case Calendar.THURSDAY: return "Thursday";
+				        case Calendar.FRIDAY: return "Friday";
+				        case Calendar.SATURDAY: return "Saturday";
+				    }
+				    return "曜日が判断できませんでした";
+
+       
+				}
+	
+
+
 
 	//・足し算
 	  @GetMapping("/plus/{val1}/{val2}")
