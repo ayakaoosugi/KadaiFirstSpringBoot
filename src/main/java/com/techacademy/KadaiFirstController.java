@@ -20,14 +20,16 @@ public class KadaiFirstController {
 	    public String dispDayOfWeek(@PathVariable String yyyymmdd) {
 		 
 
-			//曜日に当てはめる
+		// ■文字列の分割(Lesson 6Chapter 4.4部分文字列の取得：substring()メソッド
+		 //■文字列から数値に変換 Lesson 6Chapter 6.3 Stringからラッパークラスへのキャスト
+		 
 				 Calendar cal = Calendar.getInstance(); 
 				 int y = Integer.parseInt(yyyymmdd.substring(0,4));
 				 int m =Integer.parseInt(yyyymmdd.substring(4,6))-1;
 				 int d=Integer.parseInt(yyyymmdd.substring(6,8));
 				 cal.set(y,m,d);
 				 
-			
+				// ■Calendarクラスのインスタンスに設定
 				    switch (cal.get(Calendar.DAY_OF_WEEK)) {
 				        case Calendar.SUNDAY: return "Sunday";
 				        case Calendar.MONDAY: return "Monday";
